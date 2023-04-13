@@ -1,16 +1,15 @@
 package com.cal;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Calendar;
 
 public class CalTest {
 
-    private final Cal cal = new Cal();
-
     @Test
-    void calTestNull() {
+    void testCurrentMonth() {
         Cal myCal = new Cal();
         Calendar cl = Calendar.getInstance();
         int y = cl.get(Calendar.YEAR);
@@ -33,7 +32,24 @@ public class CalTest {
     }
 
     @Test
+    public void testCal() {
+        Cal myCal = new Cal();
+
+        // Teste com valores válidos
+        int dds = 1;
+        int n = 30;
+        String result = myCal.cal(dds, n);
+        assertNotNull(result);
+
+        dds = 7;
+        n = 32;
+        result = myCal.cal(dds, n);
+        assertNotNull(result); // Deve ser nulo, pois o valor de n é inválido
+    }
+
+    @Test
     public void firstOfMonthTest() {
+        Cal cal = new Cal();
         // Mês de fevereiro ano não bissexto
         int result = cal.firstOfMonth(2, 2023);
         assertEquals(3, result, "resultado deve ser quarta");
@@ -49,6 +65,7 @@ public class CalTest {
 
     @Test
     public void numberOfDaysTest() {
+        Cal cal = new Cal();
 
         int result = cal.numberOfDays(2, 2023);
         assertEquals(28, result, "tem que ter 28 dias");
@@ -63,6 +80,7 @@ public class CalTest {
 
     @Test
     public void isLeapTest() {
+        Cal cal = new Cal();
 
         boolean result = cal.isLeap(2024);
         assertTrue(result, "deve der bissexto");
